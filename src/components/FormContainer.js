@@ -13,22 +13,22 @@ import styled from 'styled-components';
 
 //using external inline-style to minimize re-render problems
 const paperStyle = {
-  width: '40%',
-  height: '80vh',
+  width: '35%',
+  height: '90vh',
   margin: 'auto 20px',
   backgroundColor: 'white',
   borderRadius: '8px',
   overflowY: 'auto',
 };
 
-const divWrapper ={
+const divWrapper = {
   margin: '20px 0',
-}
+};
 
-const submitButtonStyle ={
+const submitButtonStyle = {
   marginBottom: '40px',
   width: '75%',
-}
+};
 
 const radioButtonGrouprStyle = {
   display: 'table',
@@ -105,16 +105,13 @@ class TodoContainer extends React.Component<Props, State> {
 
         <div style={paperStyle}>
           <div>
-            
             <TextField hintText="Your name" fullWidth={true} style={textFieldStyle.rootElement} />
           </div>
 
           <div>
-            
             <TextField hintText="Your bio" fullWidth={true} style={textFieldStyle.rootElement} multiLine={true} />
           </div>
           <div>
-            
             <SelectField hintText="Primary Skill" style={textFieldStyle.rootElement}>
               <MenuItem value={1} primaryText="Front-end" />
               <MenuItem value={2} primaryText="Back-end" />
@@ -140,9 +137,9 @@ class TodoContainer extends React.Component<Props, State> {
             </div>
           </div>
           <div>
-            <DatePicker hintText="Start Date" textFieldStyle={textFieldStyle.rootElement}/>
+            <DatePicker hintText="Start Date" textFieldStyle={textFieldStyle.rootElement} />
           </div>
-          <RaisedButton label="Submit" backgroundColor={'#0081ff'} labelColor={'white'} style={submitButtonStyle}/>
+          <RaisedButton label="Submit" backgroundColor={'#0081ff'} labelColor={'white'} style={submitButtonStyle} />
         </div>
       </ItemWrapper>
     );
