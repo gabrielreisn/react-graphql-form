@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
@@ -14,17 +13,33 @@ import styled from 'styled-components';
 
 //using external inline-style to minimize re-render problems
 const paperStyle = {
-  width: '35%',
+  width: '40%',
   height: '80vh',
   margin: 'auto 20px',
   backgroundColor: 'white',
   borderRadius: '8px',
+  overflowY: 'auto',
+};
+
+const divWrapper ={
+  margin: '20px 0',
+}
+
+const submitButtonStyle ={
+  marginBottom: '40px',
+  width: '75%',
+}
+
+const radioButtonGrouprStyle = {
+  display: 'table',
+  marginLeft: '12%',
+  textAlign: 'left',
 };
 
 const textFieldStyle = {
   rootElement: {
     width: '75%',
-    marginBottom: '40px',
+    marginBottom: '30px',
     marginTop: '20px',
   },
 };
@@ -32,6 +47,14 @@ const textFieldStyle = {
 const ItemWrapper = styled.div`
   display: flex;
   padding: 5vh;
+`;
+
+const TextHeaderWrapper = styled.div`
+  color: #293e52;
+  margin-left: 12%;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 4px;
 `;
 
 const LeftInfoBox = styled.div`
@@ -82,43 +105,44 @@ class TodoContainer extends React.Component<Props, State> {
 
         <div style={paperStyle}>
           <div>
-            <div>Your Name</div>
+            
             <TextField hintText="Your name" fullWidth={true} style={textFieldStyle.rootElement} />
           </div>
 
           <div>
-            <div>Your Bio</div>
+            
             <TextField hintText="Your bio" fullWidth={true} style={textFieldStyle.rootElement} multiLine={true} />
           </div>
           <div>
-            <div>Primary Skill</div>
-            <SelectField floatingLabelText="">
+            
+            <SelectField hintText="Primary Skill" style={textFieldStyle.rootElement}>
               <MenuItem value={1} primaryText="Front-end" />
               <MenuItem value={2} primaryText="Back-end" />
               <MenuItem value={3} primaryText="Full-stack" />
               <MenuItem value={4} primaryText="UI/UX Design" />
             </SelectField>
           </div>
-          <div>
-            <div>Javascript libery of choice</div>
-            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+          <div style={divWrapper}>
+            <TextHeaderWrapper>Javascript libery of choice</TextHeaderWrapper>
+            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light" style={radioButtonGrouprStyle}>
               <RadioButton value="light" label="React" />
               <RadioButton value="not_light" label="Angular" />
               <RadioButton value="ludicrous" label="Vue" />
             </RadioButtonGroup>
           </div>
 
-          <div>
-            <div>Additional Experience</div>
-            <Checkbox label="TDD" checked={false} />
-            <Checkbox label="Heroku" checked={false} />
-            <Checkbox label="Github" checked={false} />
+          <div style={divWrapper}>
+            <TextHeaderWrapper>Additional Experience</TextHeaderWrapper>
+            <div style={radioButtonGrouprStyle}>
+              <Checkbox label="TDD" checked={false} />
+              <Checkbox label="Heroku" checked={false} />
+              <Checkbox label="Github" checked={false} />
+            </div>
           </div>
           <div>
-            <div>Start Date</div>
-            <DatePicker hintText="Portrait Inline Dialog" />
+            <DatePicker hintText="Start Date" textFieldStyle={textFieldStyle.rootElement}/>
           </div>
-          <RaisedButton label="Submit" backgroundColor={'#0081ff'} labelColor={'white'} />
+          <RaisedButton label="Submit" backgroundColor={'#0081ff'} labelColor={'white'} style={submitButtonStyle}/>
         </div>
       </ItemWrapper>
     );
