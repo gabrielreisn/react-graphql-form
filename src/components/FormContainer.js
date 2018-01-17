@@ -11,6 +11,9 @@ import MenuItem from 'material-ui/MenuItem';
 
 import styled from 'styled-components';
 
+import {graphql} from 'react-apollo';
+import gql from 'graphql-tag';
+
 //using external inline-style to minimize re-render problems
 const paperStyle = {
   width: '35%',
@@ -146,4 +149,63 @@ class TodoContainer extends React.Component<Props, State> {
   }
 }
 
-export default TodoContainer;
+const PIPEFY_QUERY = gql`
+  query {
+    publicForm(formId: "1lf_E0x4") {
+      publicFormSettings {
+        organizationName
+        submitButtonText
+        title
+      }
+
+      formFields {
+        ... on ShortTextField {
+          id
+          label
+        }
+        ... on LongTextField {
+          id
+          label
+        }
+        ... on SelectField {
+          id
+          label
+          options
+        }
+        ... on RadioVerticalField {
+          id
+          label
+          options
+        }
+        ... on ChecklistVerticalField {
+          id
+          label
+          options
+        }
+        ... on DateField {
+          id
+          label
+        }
+        __typename
+      }
+    }
+  }
+`;
+
+/*
+const PIPEFY_QUERY = gql`
+  query {
+    post(id: 1) {
+      id
+      title
+      body
+      author {
+        id
+        username
+        email
+      }
+    }
+  }
+`;
+*/
+export default graphql(PIPEFY_QUERY)(TodoContainer);

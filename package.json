@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-client-preset": "^1.0.6",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.6.1",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0",
     "styled-components": "^2.2.4"
@@ -16,11 +20,14 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "flow": "flow",
-    "prettier":
-      "prettier --write --single-quote true --trailing-comma all --print-width 120 --bracket-spacing false --jsx-bracket-same-line true"
+    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120 --bracket-spacing false --jsx-bracket-same-line true"
   },
   "lint-staged": {
-    "*.{js}": ["eslint --fix", "git add", "prettier"]
+    "*.{js}": [
+      "eslint --fix",
+      "git add",
+      "prettier"
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
