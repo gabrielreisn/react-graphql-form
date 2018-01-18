@@ -93,12 +93,13 @@ type State = {
 };
 
 class TodoContainer extends React.Component<Props, State> {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
   render() {
+    console.log('props data', this.props.data);
     return (
       <ItemWrapper>
         <LeftInfoBox>
@@ -150,7 +151,7 @@ class TodoContainer extends React.Component<Props, State> {
 }
 
 const PIPEFY_QUERY = gql`
-  query {
+  {
     publicForm(formId: "1lf_E0x4") {
       publicFormSettings {
         organizationName
@@ -192,20 +193,4 @@ const PIPEFY_QUERY = gql`
   }
 `;
 
-/*
-const PIPEFY_QUERY = gql`
-  query {
-    post(id: 1) {
-      id
-      title
-      body
-      author {
-        id
-        username
-        email
-      }
-    }
-  }
-`;
-*/
 export default graphql(PIPEFY_QUERY)(TodoContainer);
