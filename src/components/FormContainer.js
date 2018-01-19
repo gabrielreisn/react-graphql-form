@@ -5,13 +5,13 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 import styled from 'styled-components';
 
-import {graphql} from 'react-apollo';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 //using external inline-style to minimize re-render problems
@@ -130,8 +130,8 @@ class TodoContainer extends React.Component<Props, State> {
               style={textFieldStyle.rootElement}>
               {this.props.primary_skill
                 ? this.props.primary_skill.options.map((data, i) => (
-                    <MenuItem value={data} primaryText={data} key={i} />
-                  ))
+                  <MenuItem value={data} primaryText={data} key={i} />
+                ))
                 : ''}
             </SelectField>
           </div>
@@ -161,8 +161,8 @@ class TodoContainer extends React.Component<Props, State> {
             <div style={radioButtonGrouprStyle}>
               {this.props.additional_experience
                 ? this.props.additional_experience.options.map((data, i) => (
-                    <Checkbox label={data} key={i} checked={false} />
-                  ))
+                  <Checkbox label={data} key={i} checked={false} />
+                ))
                 : ''}
             </div>
           </div>
@@ -173,7 +173,7 @@ class TodoContainer extends React.Component<Props, State> {
             />
           </div>
           <RaisedButton
-            label={this.props.submitButtonText ? this.props.submitButtonText : ''}
+            label={this.props.submitButtonText ? this.props.submitButtonText : 'submit'}
             backgroundColor={'#0081ff'}
             labelColor={'white'}
             style={submitButtonStyle}
@@ -228,7 +228,7 @@ const PIPEFY_QUERY = gql`
 `;
 
 export default graphql(PIPEFY_QUERY, {
-  props: ({data}) => {
+  props: ({ data }) => {
     if (data.loading) {
       return {
         loading: data.loading,
