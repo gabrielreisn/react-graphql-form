@@ -9,6 +9,8 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import LeftBox from './LeftBox';
+
 import styled from 'styled-components';
 
 import { graphql } from 'react-apollo';
@@ -60,30 +62,6 @@ const TextHeaderWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-const LeftInfoBox = styled.div`
-  width: 200px;
-  height: 200px;
-  background-color: white;
-  border-radius: 8px;
-  margin: 0 5px auto 20%;
-`;
-
-const InfoBoxHeader = styled.div`
-  color: #0081ff;
-  font-size: 22px;
-  text-align: left;
-  font-weight: bold;
-  margin: 10px 10px 0 10px;
-`;
-
-const InfoBoxText = styled.div`
-  color: #293e52;
-  font-size: 22px;
-  text-align: left;
-  font-weight: bold;
-  margin: 10px 10px 0 10px;
-`;
-
 type Props = {
   /* ... */
 };
@@ -102,11 +80,8 @@ class TodoContainer extends React.Component<Props, State> {
     console.log('props data', this.props.javascript_library_of_choice);
     return (
       <ItemWrapper>
-        <LeftInfoBox>
-          <InfoBoxHeader>{this.props.organizationName ? this.props.organizationName : ''}</InfoBoxHeader>
-          <InfoBoxText>{this.props.title ? this.props.title : ''}</InfoBoxText>
-        </LeftInfoBox>
-
+        <LeftBox organizationName={this.props.organizationName} title={this.props.title} />
+          
         <div style={paperStyle}>
           <div>
             <TextField
