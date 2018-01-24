@@ -9,15 +9,13 @@ import {ApolloClient} from 'apollo-client';
 import {createHttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
-import gql from 'graphql-tag';
-
 import {IntrospectionFragmentMatcher} from 'apollo-cache-inmemory';
 import introspectionQueryResultData from './fragmentTypes.json';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-import FormReducer from './redux/FormReducer';
+import FormReducer from './reducers/FormReducer';
 
 const store = createStore(FormReducer);
 
@@ -35,55 +33,6 @@ const client = new ApolloClient({
   cache,
   link: link,
 });
-
-client
-  .query({
-    query: gql`
-      {
-        publicForm(formId: "1lf_E0x4") {
-          publicFormSettings {
-            organizationName
-            submitButtonText
-            title
-          }
-
-          formFields {
-            ... on ShortTextField {
-              id
-              label
-            }
-            ... on LongTextField {
-              id
-              label
-            }
-            ... on SelectField {
-              id
-              label
-              options
-            }
-            ... on RadioVerticalField {
-              id
-              label
-              options
-            }
-            ... on ChecklistVerticalField {
-              id
-              label
-              options
-            }
-            ... on DateField {
-              id
-              label
-            }
-            __typename
-          }
-        }
-      }
-    `,
-  })
-  .then(response => {
-    store.dispatch({type: 'INITIALIZE_STORE', payload: response.data.publicForm});
-  });
 
 ReactDOM.render(
   <ApolloProvider client={client}>

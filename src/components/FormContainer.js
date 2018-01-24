@@ -6,7 +6,8 @@ import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import LeftBox from './LeftBox';
-import TextInput from './TextInput';
+import BioTextInput from './BioTextInput';
+import NameTextInput from './NameTextInput';
 import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
@@ -68,8 +69,8 @@ class TodoContainer extends React.Component<Props, State> {
             <LeftBox organizationName={this.props.organizationName} title={this.props.title} />
 
             <div style={paperStyle}>
-              <TextInput hintText={this.props.your_name} multiLine={false} />
-              <TextInput hintText={this.props.your_bio} multiLine={true} />
+              <NameTextInput hintText={this.props.your_name} multiLine={false} />
+              <BioTextInput hintText={this.props.your_bio} multiLine={true} />
               <PrimarySkillSelectField primary_skill={this.props.primary_skill} />
               <JsLibraryRadioButton javascript_library_of_choice={this.props.javascript_library_of_choice} />
 
