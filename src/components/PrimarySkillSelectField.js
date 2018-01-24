@@ -1,6 +1,10 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+
+import * as FormSelector from '../selectors/FormSelector';
+import * as FormAction from '../actions/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -21,17 +25,12 @@ const labelStyle = {
 class PrimarySkillSelectField extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectFieldValue: '',
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event, index, value) {
-    this.setState({
-      selectFieldValue: value,
-    });
+    this.props.setPrimarySkill(value);
   }
 
   render() {
@@ -41,7 +40,7 @@ class PrimarySkillSelectField extends React.Component {
           hintText={this.props.primary_skill ? this.props.primary_skill.label : ''}
           style={textFieldStyle.rootElement}
           onChange={this.handleChange}
-          value={this.state.selectFieldValue}
+          value={this.props.getPrimarySkill}
           selectedMenuItemStyle={selectedMenuItemStyle}
           labelStyle={labelStyle}>
           {this.props.primary_skill
@@ -53,4 +52,18 @@ class PrimarySkillSelectField extends React.Component {
   }
 }
 
-export default PrimarySkillSelectField;
+const mapStateToProps = function(store, ownProps) {
+  return {
+    getPrimarySkill: FormSelector.getPrimarySkill(store),
+  };
+};
+
+const mapDispatchToProps = function(dispatch, ownProps) {
+  return {
+    setPrimarySkill: param => {
+      return dispatch(FormAction.setPrimarySkill(param));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrimarySkillSelectField);

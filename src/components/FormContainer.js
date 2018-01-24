@@ -2,14 +2,15 @@
 
 import * as React from 'react';
 
-import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import LeftBox from './LeftBox';
-import TextInput from './TextInput';
+import BioTextInput from './BioTextInput';
+import NameTextInput from './NameTextInput';
 import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
+import StartDate from './StartDate';
 
 import styled from 'styled-components';
 
@@ -29,14 +30,6 @@ const paperStyle = {
 const submitButtonStyle = {
   marginBottom: '40px',
   width: '75%',
-};
-
-const textFieldStyle = {
-  rootElement: {
-    width: '75%',
-    marginBottom: '30px',
-    marginTop: '20px',
-  },
 };
 
 const ItemWrapper = styled.div`
@@ -68,17 +61,14 @@ class TodoContainer extends React.Component<Props, State> {
             <LeftBox organizationName={this.props.organizationName} title={this.props.title} />
 
             <div style={paperStyle}>
-              <TextInput hintText={this.props.your_name} multiLine={false} />
-              <TextInput hintText={this.props.your_bio} multiLine={true} />
+              <NameTextInput hintText={this.props.your_name} multiLine={false} />
+              <BioTextInput hintText={this.props.your_bio} multiLine={true} />
               <PrimarySkillSelectField primary_skill={this.props.primary_skill} />
               <JsLibraryRadioButton javascript_library_of_choice={this.props.javascript_library_of_choice} />
 
               <CheckboxContainer data={this.props.additional_experience} />
 
-              <DatePicker
-                hintText={this.props.start_date ? this.props.start_date.label : ''}
-                textFieldStyle={textFieldStyle.rootElement}
-              />
+              <StartDate hintText={this.props.start_date.label} />
 
               <RaisedButton
                 label={this.props.submitButtonText ? this.props.submitButtonText : 'submit'}
@@ -146,6 +136,7 @@ export default graphql(PIPEFY_QUERY, {
     }
 
     if (data.error) {
+      alert('Error! Something went wrong :(');
       return {
         error: data.error,
       };

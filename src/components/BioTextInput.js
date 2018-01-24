@@ -1,5 +1,9 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import TextField from 'material-ui/TextField';
+
+import * as FormSelector from '../selectors/FormSelector';
+import * as FormAction from '../actions/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -9,20 +13,15 @@ const textFieldStyle = {
   },
 };
 
-class TextInput extends React.Component {
+class BioTextInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      textFieldValue: '',
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({
-      value: event.target.value,
-    });
+    this.props.setYourBio(event.target.value);
   }
 
   render() {
@@ -34,10 +33,25 @@ class TextInput extends React.Component {
           style={textFieldStyle.rootElement}
           multiLine={this.props.multiLine}
           onChange={this.handleChange}
+          value={this.props.your_bio}
         />
       </div>
     );
   }
 }
 
-export default TextInput;
+const mapStateToProps = function(store, ownProps) {
+  return {
+    your_bio: FormSelector.getYourBio(store),
+  };
+};
+
+const mapDispatchToProps = function(dispatch, ownProps) {
+  return {
+    setYourBio: param => {
+      return dispatch(FormAction.setYourBio(param));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BioTextInput);

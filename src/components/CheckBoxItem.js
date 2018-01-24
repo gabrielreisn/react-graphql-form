@@ -1,5 +1,8 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import Checkbox from 'material-ui/Checkbox';
+
+import * as FormAction from '../actions/FormAction';
 
 class CheckBoxItem extends React.Component {
   constructor(props) {
@@ -12,11 +15,17 @@ class CheckBoxItem extends React.Component {
   }
 
   updateCheck() {
-    this.setState(oldState => {
-      return {
-        checked: !oldState.checked,
-      };
+    let oldState = !this.state.checked;
+    this.setState({
+      checked: oldState,
     });
+
+    let checkBoxInfo = {
+      label: this.props.label,
+      value: oldState,
+    };
+
+    this.props.setAdditionalExperience(checkBoxInfo);
   }
 
   render() {
@@ -24,4 +33,16 @@ class CheckBoxItem extends React.Component {
   }
 }
 
-export default CheckBoxItem;
+const mapStateToProps = function(store, ownProps) {
+  return {};
+};
+
+const mapDispatchToProps = function(dispatch, ownProps) {
+  return {
+    setAdditionalExperience: param => {
+      return dispatch(FormAction.setAdditionalExperience(param));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxItem);
