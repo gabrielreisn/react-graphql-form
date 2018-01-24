@@ -3,10 +3,6 @@ import update from 'immutability-helper';
 import * as FormAction from '../actions/FormAction';
 
 export const initialFormState = {
-  organizationName: '',
-  submitButtonText: '',
-  title: '',
-
   your_name: '',
   your_bio: '',
   primary_skill: '',
@@ -27,6 +23,21 @@ const FormReducer = (state = initialFormState, action) => {
     case FormAction.SET_YOUR_NAME: {
       return update(state, {
         your_name: {$set: action.value},
+      });
+    }
+    case FormAction.SET_PRIMARY_SKILL: {
+      return update(state, {
+        primary_skill: {$set: action.value},
+      });
+    }
+    case FormAction.SET_JAVASCRIPT_LIBRARY_OF_CHOICE: {
+      return update(state, {
+        javascript_library_of_choice: {$set: action.value},
+      });
+    }
+    case FormAction.SET_START_DATE: {
+      return update(state, {
+        start_date: {$set: action.value},
       });
     }
     default:
