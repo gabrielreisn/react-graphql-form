@@ -146,6 +146,7 @@ export default graphql(PIPEFY_QUERY, {
     }
 
     if (data.error) {
+      alert('Error! Something went wrong :(');
       return {
         error: data.error,
       };
