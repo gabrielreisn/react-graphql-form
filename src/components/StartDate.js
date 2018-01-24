@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 
-import * as FormSelector from '../selectors/FormSelector';
 import * as FormAction from '../actions/FormAction';
 
 const textFieldStyle = {
@@ -16,23 +15,32 @@ const textFieldStyle = {
 class StartDate extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDate = this.handleDate.bind(this);
+  }
+
+  handleDate(event, value) {
+    this.props.setStartDate(value);
   }
 
   render() {
-    return <DatePicker hintText={this.props.hintText} textFieldStyle={textFieldStyle.rootElement} />;
+    return (
+      <DatePicker
+        hintText={this.props.hintText}
+        textFieldStyle={textFieldStyle.rootElement}
+        onChange={this.handleDate}
+      />
+    );
   }
 }
 
 const mapStateToProps = function(store, ownProps) {
-  return {
-    your_name: FormSelector.getYourName(store),
-  };
+  return {};
 };
 
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
-    setYourName: param => {
-      return dispatch(FormAction.setYourName(param));
+    setStartDate: param => {
+      return dispatch(FormAction.setStartDate(param));
     },
   };
 };

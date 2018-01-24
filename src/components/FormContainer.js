@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 
-import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import LeftBox from './LeftBox';
@@ -11,6 +10,7 @@ import NameTextInput from './NameTextInput';
 import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
+import StartDate from './StartDate';
 
 import styled from 'styled-components';
 
@@ -30,14 +30,6 @@ const paperStyle = {
 const submitButtonStyle = {
   marginBottom: '40px',
   width: '75%',
-};
-
-const textFieldStyle = {
-  rootElement: {
-    width: '75%',
-    marginBottom: '30px',
-    marginTop: '20px',
-  },
 };
 
 const ItemWrapper = styled.div`
@@ -76,10 +68,7 @@ class TodoContainer extends React.Component<Props, State> {
 
               <CheckboxContainer data={this.props.additional_experience} />
 
-              <DatePicker
-                hintText={this.props.start_date ? this.props.start_date.label : ''}
-                textFieldStyle={textFieldStyle.rootElement}
-              />
+              <StartDate hintText={this.props.start_date.label} />
 
               <RaisedButton
                 label={this.props.submitButtonText ? this.props.submitButtonText : 'submit'}
