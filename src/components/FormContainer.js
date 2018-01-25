@@ -1,8 +1,4 @@
-/* @flow */
-
 import * as React from 'react';
-
-import RaisedButton from 'material-ui/RaisedButton';
 
 import LeftBox from './LeftBox';
 import BioTextInput from './BioTextInput';
@@ -11,6 +7,7 @@ import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
 import StartDate from './StartDate';
+import SubmitButton from './SubmitButton';
 
 import styled from 'styled-components';
 
@@ -27,25 +24,12 @@ const paperStyle = {
   overflowY: 'auto',
 };
 
-const submitButtonStyle = {
-  marginBottom: '40px',
-  width: '75%',
-};
-
 const ItemWrapper = styled.div`
   display: flex;
   padding: 5vh;
 `;
 
-type Props = {
-  /* ... */
-};
-
-type State = {
-  /* ... */
-};
-
-class TodoContainer extends React.Component<Props, State> {
+class FormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -70,12 +54,7 @@ class TodoContainer extends React.Component<Props, State> {
 
               <StartDate hintText={this.props.start_date.label} />
 
-              <RaisedButton
-                label={this.props.submitButtonText ? this.props.submitButtonText : 'submit'}
-                backgroundColor={'#0081ff'}
-                labelColor={'white'}
-                style={submitButtonStyle}
-              />
+              <SubmitButton label={this.props.submitButtonText} />
             </div>
           </ItemWrapper>
         )}
@@ -160,4 +139,4 @@ export default graphql(PIPEFY_QUERY, {
       start_date: data.publicForm.formFields[5],
     };
   },
-})(TodoContainer);
+})(FormContainer);
