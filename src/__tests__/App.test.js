@@ -6,35 +6,12 @@ import { ApolloClient } from 'apollo-client';
 
 import App from '../components/App';
 import LeftBox from '../components/LeftBox';
-import { shallow } from 'enzyme';
-
-
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-
+import { BioTextInput } from '../components/BioTextInput';
+import { NameTextInput } from '../components/NameTextInput';
 import { PIPEFY_QUERY, FormContainer } from '../components/FormContainer';
 
+import { shallow } from 'enzyme';
 
-Enzyme.configure({ adapter: new Adapter() });
-
-/*
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData,
-});
-
-const cache = new InMemoryCache({fragmentMatcher});
-
-const link = createHttpLink({
-  uri: 'https://cors-anywhere.herokuapp.com/https://app.pipefy.com/public_api',
-});
-
-const client = new ApolloClient({});
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
-*/
 
 describe('App component', () => {
   it('should render <App /> component', () => {
@@ -44,10 +21,42 @@ describe('App component', () => {
 });
 
 describe('LeftBox component', () => {
-  it('should render <LeftBox /> component with props', () => {
-    const wrapper = shallow(<LeftBox organizationName={'Pipefy Recruitment Test'} title={'Recruitment Survey'} />);
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<LeftBox organizationName={'Pipefy Recruitment Test'} title={'Recruitment Survey'} />);
+
+  })
+
+  it('should render <LeftBox /> component', () => {
+
+    expect(wrapper).toHaveLength(1);
+  });
+  it('should contains component props', () => {
     expect(wrapper.instance().props.organizationName).toBe('Pipefy Recruitment Test')
     expect(wrapper.instance().props.title).toBe('Recruitment Survey')
+
+  });
+  it('should match snapshot', () => {
+
+    expect(wrapper).toHaveLength(1);
+  });
+});
+
+describe('BioTextInput component', () => {
+  it('should render <BioTextInput /> component with props', () => {
+    const wrapper = shallow(<BioTextInput hintText={'your bio'} />);
+    expect(wrapper.instance().props.hintText).toBe('your bio')
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper).toHaveLength(1);
+  });
+});
+
+describe('NameTextInput component', () => {
+  it('should render <NameTextInput /> component with props', () => {
+    const wrapper = shallow(<NameTextInput hintText={'your name'} />);
+    expect(wrapper.instance().props.hintText).toBe('your name')
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper).toHaveLength(1);
   });
 });
