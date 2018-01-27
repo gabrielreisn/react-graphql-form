@@ -27,15 +27,15 @@ const InfoBoxText = styled.div`
 
 
 class LeftBox extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {};
     }
-  
-    render () {
-        return(
-            <LeftInfoBox>
+
+    render() {
+        return (
+            <LeftInfoBox id="left-box">
                 <InfoBoxHeader>{this.props.organizationName ? this.props.organizationName : ''}</InfoBoxHeader>
                 <InfoBoxText>{this.props.title ? this.props.title : ''}</InfoBoxText>
             </LeftInfoBox>
