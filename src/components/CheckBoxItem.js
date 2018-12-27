@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Checkbox from 'material-ui/Checkbox';
 
-import * as FormAction from '../actions/FormAction';
+import * as FormAction from '../store/FormAction';
 
 class CheckBoxItem extends React.Component {
   constructor(props) {
@@ -29,7 +29,13 @@ class CheckBoxItem extends React.Component {
   }
 
   render() {
-    return <Checkbox label={this.props.label} checked={this.state.checked} onCheck={this.updateCheck} />;
+    return (
+      <Checkbox
+        label={this.props.label}
+        checked={this.state.checked}
+        onCheck={this.updateCheck}
+      />
+    );
   }
 }
 

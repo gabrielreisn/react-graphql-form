@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {compose, graphql} from 'react-apollo';
+import { connect } from 'react-redux';
+import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-import * as FormSelector from '../selectors/FormSelector';
+import * as FormSelector from '../store/FormSelector';
 
 const submitButtonStyle = {
   marginBottom: '40px',
@@ -70,12 +70,12 @@ const PIPEFY_MUTATION = gql`
       input: {
         formId: "1lf_E0x4"
         filledFields: [
-          {fieldId: "your_name", fieldValue: $name}
-          {fieldId: "your_bio", fieldValue: $bio}
-          {fieldId: "primary_skill", fieldValue: $primary_skill}
-          {fieldId: "javascript_library_of_choice", fieldValue: $jsLibrary}
-          {fieldId: "additional_experience", fieldValue: $additionalExp}
-          {fieldId: "start_date", fieldValue: $start_date}
+          { fieldId: "your_name", fieldValue: $name }
+          { fieldId: "your_bio", fieldValue: $bio }
+          { fieldId: "primary_skill", fieldValue: $primary_skill }
+          { fieldId: "javascript_library_of_choice", fieldValue: $jsLibrary }
+          { fieldId: "additional_experience", fieldValue: $additionalExp }
+          { fieldId: "start_date", fieldValue: $start_date }
         ]
       }
     ) {
@@ -92,7 +92,9 @@ const mapStateToProps = function(store, ownProps) {
     getYourName: FormSelector.getYourName(store),
     getYourBio: FormSelector.getYourBio(store),
     getPrimarySkill: FormSelector.getPrimarySkill(store),
-    getJavascriptLibraryOfChoice: FormSelector.getJavascriptLibraryOfChoice(store),
+    getJavascriptLibraryOfChoice: FormSelector.getJavascriptLibraryOfChoice(
+      store
+    ),
     getAdditionalExperience: FormSelector.getAdditionalExperience(store),
     getStartDate: FormSelector.getStartDate(store),
   };
@@ -103,6 +105,6 @@ const mapDispatchToProps = function(dispatch, ownProps) {
 };
 
 export default compose(
-  graphql(PIPEFY_MUTATION, {name: 'PipefyMutation'}),
+  graphql(PIPEFY_MUTATION, { name: 'PipefyMutation' }),
   connect(mapStateToProps, mapDispatchToProps)
 )(SubmitButton);

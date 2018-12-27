@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { connect } from 'react-redux';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
-import * as FormAction from '../actions/FormAction';
+import * as FormAction from '../store/FormAction';
 
 import styled from 'styled-components';
 
@@ -39,10 +39,16 @@ class JsLibraryRadioButton extends React.Component {
     return (
       <div style={divWrapper}>
         <TextHeaderWrapper>
-          {this.props.javascript_library_of_choice ? this.props.javascript_library_of_choice.label : ''}
+          {this.props.javascript_library_of_choice
+            ? this.props.javascript_library_of_choice.label
+            : ''}
         </TextHeaderWrapper>
 
-        <RadioButtonGroup name="js library options" style={radioButtonGrouprStyle} onChange={this.handleChange}>
+        <RadioButtonGroup
+          name="js library options"
+          style={radioButtonGrouprStyle}
+          onChange={this.handleChange}
+        >
           {this.props.javascript_library_of_choice
             ? this.props.javascript_library_of_choice.options.map((data, i) => (
                 <RadioButton value={data} label={data} key={i} />
@@ -66,4 +72,6 @@ const mapDispatchToProps = function(dispatch, ownProps) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(JsLibraryRadioButton);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  JsLibraryRadioButton
+);

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 
-import * as FormAction from '../actions/FormAction';
+import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {

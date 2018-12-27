@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-import * as FormSelector from '../selectors/FormSelector';
-import * as FormAction from '../actions/FormAction';
+import * as FormSelector from '../store/FormSelector';
+import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -37,14 +37,19 @@ class PrimarySkillSelectField extends React.Component {
     return (
       <div>
         <SelectField
-          hintText={this.props.primary_skill ? this.props.primary_skill.label : ''}
+          hintText={
+            this.props.primary_skill ? this.props.primary_skill.label : ''
+          }
           style={textFieldStyle.rootElement}
           onChange={this.handleChange}
           value={this.props.getPrimarySkill}
           selectedMenuItemStyle={selectedMenuItemStyle}
-          labelStyle={labelStyle}>
+          labelStyle={labelStyle}
+        >
           {this.props.primary_skill
-            ? this.props.primary_skill.options.map((data, i) => <MenuItem value={data} primaryText={data} key={i} />)
+            ? this.props.primary_skill.options.map((data, i) => (
+                <MenuItem value={data} primaryText={data} key={i} />
+              ))
             : ''}
         </SelectField>
       </div>
@@ -66,4 +71,6 @@ const mapDispatchToProps = function(dispatch, ownProps) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrimarySkillSelectField);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  PrimarySkillSelectField
+);

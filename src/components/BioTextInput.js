@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 
-import * as FormSelector from '../selectors/FormSelector';
-import * as FormAction from '../actions/FormAction';
+import * as FormSelector from '../store/FormSelector';
+import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {
