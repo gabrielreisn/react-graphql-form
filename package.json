@@ -26,15 +26,10 @@
     "eject": "react-scripts eject",
     "fragmentFetch": "node src/fragmentFetch.js",
     "precommit": "lint-staged",
-    "flow": "flow",
-    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120 --bracket-spacing false --jsx-bracket-same-line true"
+    "flow": "flow"
   },
   "lint-staged": {
-    "*.{js}": [
-      "eslint --fix",
-      "git add",
-      "prettier"
-    ]
+    "*.{js}": ["eslint --fix", "git add", "prettier"]
   },
   "babel": {
     "plugins": [
@@ -42,7 +37,8 @@
         "module-resolver",
         {
           "alias": {
-            "react-apollo": "./node_modules/react-apollo/react-apollo.browser.umd.js"
+            "react-apollo":
+              "./node_modules/react-apollo/react-apollo.browser.umd.js"
           }
         }
       ]
@@ -70,10 +66,5 @@
     "lint-staged": "^6.0.0",
     "prettier": "1.9.1"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+// @flow
+
+import * as React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import FormContainer from '../components/FormContainer';
@@ -19,16 +21,12 @@ const muiTheme = getMuiTheme({
   },
 });
 
-class App extends Component {
-  render() {
-    return (
-      <AppWrapper>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <FormContainer />
-        </MuiThemeProvider>
-      </AppWrapper>
-    );
-  }
-}
+const App = () => (
+  <AppWrapper>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <FormContainer />
+    </MuiThemeProvider>
+  </AppWrapper>
+);
 
-export default App;
+export default React.memo(App);

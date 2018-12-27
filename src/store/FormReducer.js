@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 
-import * as FormAction from '../actions/FormAction';
+import * as FormAction from './FormAction';
 
 export const initialFormState = {
   your_name: '',
@@ -16,27 +16,27 @@ const FormReducer = (state = initialFormState, action) => {
   switch (action.type) {
     case FormAction.SET_YOUR_BIO: {
       return update(state, {
-        your_bio: {$set: action.value},
+        your_bio: { $set: action.value },
       });
     }
     case FormAction.SET_YOUR_NAME: {
       return update(state, {
-        your_name: {$set: action.value},
+        your_name: { $set: action.value },
       });
     }
     case FormAction.SET_PRIMARY_SKILL: {
       return update(state, {
-        primary_skill: {$set: action.value},
+        primary_skill: { $set: action.value },
       });
     }
     case FormAction.SET_JAVASCRIPT_LIBRARY_OF_CHOICE: {
       return update(state, {
-        javascript_library_of_choice: {$set: action.value},
+        javascript_library_of_choice: { $set: action.value },
       });
     }
     case FormAction.SET_START_DATE: {
       return update(state, {
-        start_date: {$set: action.value},
+        start_date: { $set: action.value },
       });
     }
     case FormAction.SET_ADDITIONAL_EXPERIENCE: {
@@ -51,7 +51,7 @@ const FormReducer = (state = initialFormState, action) => {
       experience.push(action.value);
 
       return update(state, {
-        additional_experience: {$set: experience},
+        additional_experience: { $set: experience },
       });
     }
     default:
