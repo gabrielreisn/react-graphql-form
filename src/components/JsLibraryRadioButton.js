@@ -24,41 +24,33 @@ const TextHeaderWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-class JsLibraryRadioButton extends React.Component {
-  constructor(props) {
-    super(props);
+const JsLibraryRadioButton = props => {
+  const handleChange = (event, value) => {
+    props.setJavascriptLibraryOfChoice(value);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  return (
+    <div style={divWrapper}>
+      <TextHeaderWrapper>
+        {props.javascript_library_of_choice
+          ? props.javascript_library_of_choice.label
+          : ''}
+      </TextHeaderWrapper>
 
-  handleChange(event, value) {
-    this.props.setJavascriptLibraryOfChoice(value);
-  }
-
-  render() {
-    return (
-      <div style={divWrapper}>
-        <TextHeaderWrapper>
-          {this.props.javascript_library_of_choice
-            ? this.props.javascript_library_of_choice.label
-            : ''}
-        </TextHeaderWrapper>
-
-        <RadioButtonGroup
-          name="js library options"
-          style={radioButtonGrouprStyle}
-          onChange={this.handleChange}
-        >
-          {this.props.javascript_library_of_choice
-            ? this.props.javascript_library_of_choice.options.map((data, i) => (
-                <RadioButton value={data} label={data} key={i} />
-              ))
-            : ''}
-        </RadioButtonGroup>
-      </div>
-    );
-  }
-}
+      <RadioButtonGroup
+        name="js library options"
+        style={radioButtonGrouprStyle}
+        onChange={handleChange}
+      >
+        {props.javascript_library_of_choice
+          ? props.javascript_library_of_choice.options.map((data, i) => (
+              <RadioButton value={data} label={data} key={i} />
+            ))
+          : ''}
+      </RadioButtonGroup>
+    </div>
+  );
+};
 
 const mapStateToProps = function(store, ownProps) {
   return {};

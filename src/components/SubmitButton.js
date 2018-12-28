@@ -13,23 +13,17 @@ const submitButtonStyle = {
   width: '75%',
 };
 
-class SubmitButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  async handleClick() {
+const SubmitButton = props => {
+  const handleClick = async () => {
     try {
-      const name = this.props.getYourName;
-      const bio = this.props.getYourBio;
-      const primary_skill = this.props.getPrimarySkill;
-      const jsLibrary = this.props.getJavascriptLibraryOfChoice;
-      const additionalExp = this.props.getAdditionalExperience;
-      const start_date = this.props.getStartDate;
+      const name = props.getYourName;
+      const bio = props.getYourBio;
+      const primary_skill = props.getPrimarySkill;
+      const jsLibrary = props.getJavascriptLibraryOfChoice;
+      const additionalExp = props.getAdditionalExperience;
+      const start_date = props.getStartDate;
 
-      await this.props.PipefyMutation({
+      await props.PipefyMutation({
         variables: {
           name,
           bio,
@@ -43,20 +37,18 @@ class SubmitButton extends React.Component {
     } catch (e) {
       alert('Error in submitting form');
     }
-  }
+  };
 
-  render() {
-    return (
-      <RaisedButton
-        label={this.props.label ? this.props.label : 'submit'}
-        backgroundColor={'#0081ff'}
-        labelColor={'#ffffff'}
-        style={submitButtonStyle}
-        onClick={this.handleClick}
-      />
-    );
-  }
-}
+  return (
+    <RaisedButton
+      label={props.label ? props.label : 'submit'}
+      backgroundColor={'#0081ff'}
+      labelColor={'#ffffff'}
+      style={submitButtonStyle}
+      onClick={handleClick}
+    />
+  );
+};
 
 const mapStateToProps = function(store, ownProps) {
   return {
