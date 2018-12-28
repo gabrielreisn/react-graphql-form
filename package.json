@@ -12,7 +12,7 @@
     "immutability-helper": "^2.6.4",
     "material-ui": "^0.20.0",
     "react": "^16.7.0",
-    "react-apollo": "^2.0.4",
+    "react-apollo": "^2.3.3",
     "react-dom": "^16.7.0",
     "react-redux": "^5.0.6",
     "react-scripts": "^2.1.2",
@@ -31,19 +31,6 @@
   },
   "lint-staged": {
     "*.{js}": ["eslint --fix", "git add", "prettier"]
-  },
-  "babel": {
-    "plugins": [
-      [
-        "module-resolver",
-        {
-          "alias": {
-            "react-apollo":
-              "./node_modules/react-apollo/react-apollo.browser.umd.js"
-          }
-        }
-      ]
-    ]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

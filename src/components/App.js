@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import { client } from '../graphql/apolloClient';
 import store from '../store';
 
-import FormContainer from '../components/FormContainer';
+import FormContainer from '../containers/FormContainer';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -39,4 +39,4 @@ const App = () => (
   </ApolloProvider>
 );
 
-export default React.memo(App);
+export default App;
