@@ -3,15 +3,15 @@ import CheckBoxItem from './CheckBoxItem';
 
 import styled from 'styled-components';
 
-const radioButtonGrouprStyle = {
-  display: 'table',
-  marginLeft: '12%',
-  textAlign: 'left',
-};
+const RadioButtonGrouprStyle = styled.div`
+  display: table;
+  margin-left: 12%;
+  text-align: left;
+`;
 
-const divWrapper = {
-  margin: '20px 0',
-};
+const DivWrapper = styled.div`
+  margin: '20px 0';
+`;
 
 const TextHeaderWrapper = styled.div`
   color: #293e52;
@@ -21,32 +21,17 @@ const TextHeaderWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-class CheckboxContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      textFieldValue: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      value: event.target.value,
-    });
-  }
-
-  render() {
-    return (
-      <div style={divWrapper}>
-        <TextHeaderWrapper>{this.props.data ? this.props.data.label : ''}</TextHeaderWrapper>
-        <div style={radioButtonGrouprStyle}>
-          {this.props.data ? this.props.data.options.map((data, i) => <CheckBoxItem label={data} key={i} />) : ''}
-        </div>
-      </div>
-    );
-  }
-}
+const CheckboxContainer = props => (
+  <DivWrapper>
+    <TextHeaderWrapper>{props.data ? props.data.label : ''}</TextHeaderWrapper>
+    <RadioButtonGrouprStyle>
+      {props.data
+        ? props.data.options.map((data, i) => (
+            <CheckBoxItem label={data} key={i} />
+          ))
+        : ''}
+    </RadioButtonGrouprStyle>
+  </DivWrapper>
+);
 
 export default CheckboxContainer;

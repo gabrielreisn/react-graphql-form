@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 
-import * as FormSelector from '../selectors/FormSelector';
-import * as FormAction from '../actions/FormAction';
+import * as FormSelector from '../store/FormSelector';
+import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -13,32 +13,22 @@ const textFieldStyle = {
   },
 };
 
-class NameTextInput extends React.Component {
-  constructor(props) {
-    super(props);
+const NameTextInput = props => {
+  const handleChange = event => {
+    props.setYourName(event.target.value);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.props.setYourName(event.target.value);
-  }
-
-  render() {
-    return (
-      <div>
-        <TextField
-          hintText={this.props.hintText ? this.props.hintText.label : ''}
-          fullWidth={true}
-          style={textFieldStyle.rootElement}
-          multiLine={this.props.multiLine}
-          onChange={this.handleChange}
-          value={this.props.your_name}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <TextField
+      hintText={props.hintText ? props.hintText.label : ''}
+      fullWidth
+      style={textFieldStyle.rootElement}
+      multiLine={props.multiLine}
+      onChange={handleChange}
+      value={props.your_name}
+    />
+  );
+};
 
 const mapStateToProps = function(store, ownProps) {
   return {

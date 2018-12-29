@@ -1,35 +1,38 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Checkbox from 'material-ui/Checkbox';
 
-import * as FormAction from '../actions/FormAction';
+import * as FormAction from '../store/FormAction';
 
 class CheckBoxItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: false,
-    };
+  state = {
+    checked: false,
+  };
 
-    this.updateCheck = this.updateCheck.bind(this);
-  }
-
-  updateCheck() {
-    let oldState = !this.state.checked;
-    this.setState({
-      checked: oldState,
+  toggleCheck = () => {
+    this.setState(prevState => {
+      return {
+        checked: !prevState.checked,
+      };
     });
 
-    let checkBoxInfo = {
-      label: this.props.label,
-      value: oldState,
+    const { label, setAdditionalExperience } = this.props;
+    const { checked } = this.state;
+
+    const checkBoxInfo = {
+      label,
+      value: checked,
     };
 
-    this.props.setAdditionalExperience(checkBoxInfo);
-  }
+    setAdditionalExperience(checkBoxInfo);
+  };
 
   render() {
-    return <Checkbox label={this.props.label} checked={this.state.checked} onCheck={this.updateCheck} />;
+    const { label } = this.props;
+    const { checked } = this.state;
+    return (
+      <Checkbox label={label} checked={checked} onCheck={this.toggleCheck} />
+    );
   }
 }
 

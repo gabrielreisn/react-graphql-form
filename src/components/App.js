@@ -1,9 +1,17 @@
-import React, {Component} from 'react';
+// @flow
+
+import * as React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FormContainer from '../components/FormContainer';
 
+import { ApolloProvider } from 'react-apollo';
+import { Provider } from 'react-redux';
 import styled from 'styled-components';
+
+import { client } from '../graphql/apolloClient';
+import store from '../store';
+
+import FormContainer from '../containers/FormContainer';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -19,16 +27,16 @@ const muiTheme = getMuiTheme({
   },
 });
 
-class App extends Component {
-  render() {
-    return (
+const App = () => (
+  <ApolloProvider client={client}>
+    <Provider store={store}>
       <AppWrapper>
         <MuiThemeProvider muiTheme={muiTheme}>
           <FormContainer />
         </MuiThemeProvider>
       </AppWrapper>
-    );
-  }
-}
+    </Provider>
+  </ApolloProvider>
+);
 
 export default App;
