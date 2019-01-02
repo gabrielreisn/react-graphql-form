@@ -25,6 +25,7 @@ const ItemWrapper = styled.div`
 `;
 
 const FormWrapper = props => {
+  const { getFormData, setFormData } = props;
   const {
     organizationName,
     submitButtonText,
@@ -42,7 +43,12 @@ const FormWrapper = props => {
     <ItemWrapper>
       <LeftBox organizationName={organizationName} title={title} />
       <PaperStyle>
-        <NameTextInput hintText={ShortTextField} multiLine={false} />
+        <NameTextInput
+          hintText={ShortTextField}
+          multiLine={false}
+          getFormData={getFormData}
+          setFormData={setFormData}
+        />
 
         <BioTextInput hintText={LongTextField} multiLine={true} />
 

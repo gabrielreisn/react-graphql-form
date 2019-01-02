@@ -2,16 +2,19 @@ import update from 'immutability-helper';
 
 import * as FormAction from './FormAction';
 
-export const initialFormState = {
+import { UPDATE_FORM_DATA } from './actionTypes';
+
+export const initialState = {
   your_name: '',
   your_bio: '',
   primary_skill: '',
   javascript_library_of_choice: '',
   additional_experience: [],
   start_date: '',
+  formData: {},
 };
 
-const FormReducer = (state = initialFormState, action) => {
+const FormReducer = (state = initialState, action) => {
   if (!action) return state;
   switch (action.type) {
     case FormAction.SET_YOUR_BIO: {
@@ -43,7 +46,6 @@ const FormReducer = (state = initialFormState, action) => {
       let experience = [...state.additional_experience];
 
       let index = experience.findIndex(el => el.label === action.value.label);
-
       if (index !== -1) {
         experience.splice(index, 1);
       }
@@ -54,9 +56,60 @@ const FormReducer = (state = initialFormState, action) => {
         additional_experience: { $set: experience },
       });
     }
+
+    case UPDATE_FORM_DATA: {
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [action.key]: action.payload,
+        },
+      };
+    }
+
     default:
       return state;
   }
 };
 
 export default FormReducer;
+
+/**
+ * 
+ * 
+ * 
+ import { SET_VIEWED_ITEM, SET_VIEWED_ITEMS } from './actionTypes';
+
+const initialState = {
+  viewedItems: {},
+};
+
+const pdfTemplateReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_VIEWED_ITEM: {
+      return {
+        ...state,
+        viewedItems: {
+          ...state.viewedItems,
+          [action.item]: true,
+        },
+      };
+    }
+
+    case SET_VIEWED_ITEMS: {
+      return {
+        ...state,
+        viewedItems: action.items,
+      };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default pdfTemplateReducer;
+
+
+
+ */

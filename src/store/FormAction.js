@@ -1,3 +1,6 @@
+import { UPDATE_FORM_DATA } from './actionTypes';
+
+/** DEPRECATED */
 export const SET_ORGANIZATION_NAME = 'SET_ORGANIZATION_NAME';
 export const SET_SUBMIT_BUTTON_TEXT = 'SET_SUBMIT_BUTTON_TEXT';
 export const SET_TITLE = 'SET_TITLE';
@@ -5,7 +8,8 @@ export const SET_TITLE = 'SET_TITLE';
 export const SET_YOUR_NAME = 'SET_YOUR_NAME';
 export const SET_YOUR_BIO = 'SET_YOUR_BIO';
 export const SET_PRIMARY_SKILL = 'SET_PRIMARY_SKILL';
-export const SET_JAVASCRIPT_LIBRARY_OF_CHOICE = 'SET_JAVASCRIPT_LIBRARY_OF_CHOICE';
+export const SET_JAVASCRIPT_LIBRARY_OF_CHOICE =
+  'SET_JAVASCRIPT_LIBRARY_OF_CHOICE';
 export const SET_ADDITIONAL_EXPERIENCE = 'SET_ADDITIONAL_EXPERIENCE';
 export const SET_START_DATE = 'SET_START_DATE';
 
@@ -73,3 +77,13 @@ export function setStartDate(value) {
     value,
   };
 }
+
+/** DEPRECATED */
+
+export const setFormData = (key: string, payload: any) => {
+  return {
+    type: UPDATE_FORM_DATA,
+    key,
+    payload,
+  };
+};
