@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
-import * as FormSelector from '../store/FormSelector';
-import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -22,45 +18,31 @@ const labelStyle = {
   textAlign: 'left',
 };
 
-const PrimarySkillSelectField = props => {
+const PrimarySkillSelectField = ({
+  setFormData,
+  getFormData,
+  primarySkill: { label, options },
+}) => {
   const handleChange = event => {
-    props.setPrimarySkill(event.target.innerText);
+    setFormData('primarySkill', event.target.innerText);
   };
 
   return (
     <div>
       <SelectField
-        hintText={props.primary_skill ? props.primary_skill.label : ''}
+        hintText={label}
         style={textFieldStyle.rootElement}
         onChange={handleChange}
-        value={props.getPrimarySkill}
+        value={getFormData('primarySkill')}
         selectedMenuItemStyle={selectedMenuItemStyle}
         labelStyle={labelStyle}
       >
-        {props.primary_skill
-          ? props.primary_skill.options.map((data, i) => (
-              <MenuItem value={data} primaryText={data} key={i} />
-            ))
-          : ''}
+        {options.map((optionLabel, i) => (
+          <MenuItem value={optionLabel} primaryText={optionLabel} key={i} />
+        ))}
       </SelectField>
     </div>
   );
 };
 
-const mapStateToProps = function(store, ownProps) {
-  return {
-    getPrimarySkill: FormSelector.getPrimarySkill(store),
-  };
-};
-
-const mapDispatchToProps = function(dispatch, ownProps) {
-  return {
-    setPrimarySkill: param => {
-      return dispatch(FormAction.setPrimarySkill(param));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  PrimarySkillSelectField
-);
+export default PrimarySkillSelectField;

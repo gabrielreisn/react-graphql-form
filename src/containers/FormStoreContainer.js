@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import FormWrapper from '../components/FormWrapper';
 
 import { setFormData } from '../store/FormAction';
-import { getFormData } from '../store/FormSelector';
+import { getFormData, getFormFullData } from '../store/FormSelector';
 
 const mapStateToProps = state => ({
   getFormData: key => getFormData(key, state),
+  getFormFullData: getFormFullData(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
-
-import * as FormAction from '../store/FormAction';
 
 const textFieldStyle = {
   rootElement: {
@@ -12,30 +9,18 @@ const textFieldStyle = {
   },
 };
 
-const StartDate = props => {
+const StartDate = ({ setFormData, hintText: { label } }) => {
   const handleDate = (event, value) => {
-    props.setStartDate(value);
+    setFormData('date', value);
   };
 
   return (
     <DatePicker
-      hintText={props.hintText}
+      hintText={label}
       textFieldStyle={textFieldStyle.rootElement}
       onChange={handleDate}
     />
   );
 };
 
-const mapStateToProps = function(store, ownProps) {
-  return {};
-};
-
-const mapDispatchToProps = function(dispatch, ownProps) {
-  return {
-    setStartDate: param => {
-      return dispatch(FormAction.setStartDate(param));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(StartDate);
+export default StartDate;

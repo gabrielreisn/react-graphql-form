@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import LeftBox from './LeftBox';
-import BioTextInput from './BioTextInput';
-import NameTextInput from './NameTextInput';
+import TextInputField from './TextInputField';
 import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
@@ -43,24 +42,35 @@ const FormWrapper = props => {
     <ItemWrapper>
       <LeftBox organizationName={organizationName} title={title} />
       <PaperStyle>
-        <NameTextInput
+        <TextInputField
+          typeField="name"
           hintText={ShortTextField}
-          multiLine={false}
+          setFormData={setFormData}
+        />
+
+        <TextInputField
+          typeField="bio"
+          hintText={LongTextField}
+          setFormData={setFormData}
+        />
+
+        <PrimarySkillSelectField
+          primarySkill={SelectField}
           getFormData={getFormData}
           setFormData={setFormData}
         />
 
-        <BioTextInput hintText={LongTextField} multiLine={true} />
-
-        <PrimarySkillSelectField primary_skill={SelectField} />
-
         <JsLibraryRadioButton
-          javascript_library_of_choice={RadioVerticalField}
+          jsLibrary={RadioVerticalField}
+          setFormData={setFormData}
         />
 
-        <CheckboxContainer data={ChecklistVerticalField} />
+        <CheckboxContainer
+          checklistField={ChecklistVerticalField}
+          setFormData={setFormData}
+        />
 
-        <StartDate hintText={DateField.label} />
+        <StartDate hintText={DateField} setFormData={setFormData} />
 
         <SubmitButton label={submitButtonText} />
       </PaperStyle>

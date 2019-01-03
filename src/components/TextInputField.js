@@ -9,20 +9,20 @@ const textFieldStyle = {
   },
 };
 
-const NameTextInput = props => {
+const TextInputField = ({ setFormData, hintText, typeField }) => {
   const handleChange = event => {
-    props.setFormData('name', event.target.value);
+    setFormData(typeField, event.target.value);
   };
 
   return (
     <TextField
-      hintText={props.hintText ? props.hintText.label : ''}
+      hintText={hintText.label}
       fullWidth
       style={textFieldStyle.rootElement}
-      multiLine={props.multiLine}
+      multiLine
       onChange={handleChange}
     />
   );
 };
 
-export default NameTextInput;
+export default TextInputField;

@@ -12,3 +12,4 @@ export const getStartDate = state => state.start_date;
 //** DEPRECATE ABOVE */
 
 export const getFormData = (key, state) => state.formData[key];
+export const getFormFullData = state => state.formData;
