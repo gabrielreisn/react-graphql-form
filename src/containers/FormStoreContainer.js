@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import FormWrapper from '../components/FormWrapper';
 
-import { setFormData } from '../store/FormAction';
+import { setFormData, updateArrayField } from '../store/FormAction';
 import { getFormData, getFormFullData } from '../store/FormSelector';
 
 const mapStateToProps = state => ({
@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setFormData: (key, payload) => dispatch(setFormData(key, payload)),
+  updateArrayField: (key, payload) => dispatch(updateArrayField(key, payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormWrapper);

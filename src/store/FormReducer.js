@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 
 import * as FormAction from './FormAction';
 
-import { UPDATE_FORM_DATA } from './actionTypes';
+import { UPDATE_FORM_DATA, UPDATE_ARRAY_FIELD } from './actionTypes';
 
 export const initialState = {
   your_name: '',
@@ -63,6 +63,23 @@ const FormReducer = (state = initialState, action) => {
         formData: {
           ...state.formData,
           [action.key]: action.payload,
+        },
+      };
+    }
+
+    case UPDATE_ARRAY_FIELD: {
+      const previousArray = state.formData[action.key]
+        ? state.formData[action.key]
+        : [];
+      const newArray = previousArray
+        .filter(elem => elem.label !== action.payload.label)
+        .concat(action.payload);
+
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [action.key]: newArray,
         },
       };
     }

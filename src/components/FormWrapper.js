@@ -24,7 +24,14 @@ const ItemWrapper = styled.div`
 `;
 
 const FormWrapper = props => {
-  const { getFormData, setFormData } = props;
+  const {
+    getFormData,
+    setFormData,
+    updateArrayField,
+    getFormFullData,
+    formMutation,
+    fieldsAmount,
+  } = props;
   const {
     organizationName,
     submitButtonText,
@@ -67,12 +74,17 @@ const FormWrapper = props => {
 
         <CheckboxContainer
           checklistField={ChecklistVerticalField}
-          setFormData={setFormData}
+          updateArrayField={updateArrayField}
         />
 
         <StartDate hintText={DateField} setFormData={setFormData} />
 
-        <SubmitButton label={submitButtonText} />
+        <SubmitButton
+          label={submitButtonText}
+          formMutation={formMutation}
+          getFormFullData={getFormFullData}
+          fieldsAmount={fieldsAmount}
+        />
       </PaperStyle>
     </ItemWrapper>
   );

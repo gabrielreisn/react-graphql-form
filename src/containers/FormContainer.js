@@ -15,6 +15,10 @@ const normalizeFields = fields => {
   }, {});
 };
 
+const objectSize = object => {
+  return Object.keys(object).length;
+};
+
 const FormContainer = () => (
   <Mutation mutation={PIPEFY_MUTATION}>
     {pipefyMutation => (
@@ -29,6 +33,7 @@ const FormContainer = () => (
               formMutation={pipefyMutation}
               publicFormSettings={publicFormSettings}
               formFields={normalizeFields(formFields)}
+              fieldsAmount={objectSize(formFields)}
             />
           );
         }}

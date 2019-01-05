@@ -6,22 +6,21 @@ class CheckBoxItem extends React.Component {
     checked: false,
   };
 
-  toggleCheck = () => {
-    this.setState(prevState => {
+  updateCheckboxDate = () => {
+    const { label, updateArrayField } = this.props;
+    const { checked } = this.state;
+
+    updateArrayField('checkbox', { label, checked });
+  };
+
+  toggleCheck = async () => {
+    await this.setState(prevState => {
       return {
         checked: !prevState.checked,
       };
     });
 
-    const { label, setFormData } = this.props;
-    const { checked } = this.state;
-
-    const checkBoxInfo = {
-      label,
-      value: checked,
-    };
-
-    setFormData('checkbox', checkBoxInfo);
+    this.updateCheckboxDate();
   };
 
   render() {

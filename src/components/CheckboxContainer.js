@@ -22,14 +22,18 @@ const TextHeaderWrapper = styled.div`
 `;
 
 const CheckboxContainer = ({
-  setFormData,
+  updateArrayField,
   checklistField: { options, label },
 }) => (
   <DivWrapper>
     <TextHeaderWrapper>{label}</TextHeaderWrapper>
     <RadioButtonGrouprStyle>
       {options.map((data, i) => (
-        <CheckBoxItem label={data} key={i} setFormData={setFormData} />
+        <CheckBoxItem
+          label={data}
+          key={i}
+          updateArrayField={updateArrayField}
+        />
       ))}
     </RadioButtonGrouprStyle>
   </DivWrapper>
