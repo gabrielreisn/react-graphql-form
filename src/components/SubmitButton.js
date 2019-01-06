@@ -6,49 +6,44 @@ const submitButtonStyle = {
   width: '75%',
 };
 
-const SubmitButton = ({ getFormFullData, fieldsAmount, label }) => {
-  /** 
-   * destructuring props to use ate mutation!
-  const {
-    bio,
-    checkbox,
-    jsLibrary,
-    name,
-    primarySkill,
-    date,
-  } = getFormFullData;
-  */
+const validadeForm = (objectMap, amount) => {
+  const fields = Object.values(objectMap).map(ob => !!ob);
 
-  const validadeForm = (objectMap, amount) => {
-    const fields = Object.values(objectMap).map(ob => !!ob);
+  return fields.length === amount && !fields.includes(false);
+};
 
-    return fields.length === amount && !fields.includes(false);
+const SubmitButton = ({
+  getFormFullData,
+  fieldsAmount,
+  label,
+  formMutation,
+}) => {
+  const handleClick = async () => {
+    const {
+      bio,
+      checkbox,
+      jsLibrary,
+      name,
+      primarySkill,
+      date,
+    } = getFormFullData;
+
+    try {
+      await formMutation({
+        variables: {
+          name,
+          bio,
+          primary_skill: primarySkill,
+          jsLibrary: jsLibrary,
+          additionalExp: checkbox,
+          start_date: date,
+        },
+      });
+      alert('Form submitted successfully');
+    } catch (e) {
+      alert(`Error in submitting form: ${e}`);
+    }
   };
-  // const handleClick = async () => {
-  //   try {
-  //     // gotta remove this!
-  //     const name = props.getYourName;
-  //     const bio = props.getYourBio;
-  //     const primary_skill = props.getPrimarySkill;
-  //     const jsLibrary = props.getJavascriptLibraryOfChoice;
-  //     const additionalExp = props.getAdditionalExperience;
-  //     const start_date = props.getStartDate;
-
-  //     await props.PipefyMutation({
-  //       variables: {
-  //         name,
-  //         bio,
-  //         primary_skill,
-  //         jsLibrary,
-  //         additionalExp,
-  //         start_date,
-  //       },
-  //     });
-  //     alert('Form submitted successfully');
-  //   } catch (e) {
-  //     alert('Error in submitting form');
-  //   }
-  // };
 
   const shouldDisable = !validadeForm(getFormFullData, fieldsAmount);
   return (
@@ -58,7 +53,7 @@ const SubmitButton = ({ getFormFullData, fieldsAmount, label }) => {
       labelColor="#ffffff"
       style={submitButtonStyle}
       disabled={shouldDisable}
-      //onClick={validadeForm}
+      onClick={handleClick}
     />
   );
 };

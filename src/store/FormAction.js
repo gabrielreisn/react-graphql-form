@@ -1,7 +1,5 @@
 import { UPDATE_FORM_DATA, UPDATE_ARRAY_FIELD } from './actionTypes';
 
-/** actions */
-
 export const setFormData = (key: string, payload: any) => {
   return {
     type: UPDATE_FORM_DATA,
