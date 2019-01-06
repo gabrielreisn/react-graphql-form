@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import LeftBox from './LeftBox';
-import BioTextInput from './BioTextInput';
-import NameTextInput from './NameTextInput';
+import TextInputField from './TextInputField';
 import PrimarySkillSelectField from './PrimarySkillSelectField';
 import CheckboxContainer from './CheckboxContainer';
 import JsLibraryRadioButton from './JsLibraryRadioButton';
@@ -26,6 +25,14 @@ const ItemWrapper = styled.div`
 
 const FormWrapper = props => {
   const {
+    getFormData,
+    setFormData,
+    updateArrayField,
+    getFormFullData,
+    formMutation,
+    fieldsAmount,
+  } = props;
+  const {
     organizationName,
     submitButtonText,
     title,
@@ -42,21 +49,42 @@ const FormWrapper = props => {
     <ItemWrapper>
       <LeftBox organizationName={organizationName} title={title} />
       <PaperStyle>
-        <NameTextInput hintText={ShortTextField} multiLine={false} />
-
-        <BioTextInput hintText={LongTextField} multiLine={true} />
-
-        <PrimarySkillSelectField primary_skill={SelectField} />
-
-        <JsLibraryRadioButton
-          javascript_library_of_choice={RadioVerticalField}
+        <TextInputField
+          typeField="name"
+          hintText={ShortTextField}
+          setFormData={setFormData}
         />
 
-        <CheckboxContainer data={ChecklistVerticalField} />
+        <TextInputField
+          typeField="bio"
+          hintText={LongTextField}
+          setFormData={setFormData}
+        />
 
-        <StartDate hintText={DateField.label} />
+        <PrimarySkillSelectField
+          primarySkill={SelectField}
+          getFormData={getFormData}
+          setFormData={setFormData}
+        />
 
-        <SubmitButton label={submitButtonText} />
+        <JsLibraryRadioButton
+          jsLibrary={RadioVerticalField}
+          setFormData={setFormData}
+        />
+
+        <CheckboxContainer
+          checklistField={ChecklistVerticalField}
+          updateArrayField={updateArrayField}
+        />
+
+        <StartDate hintText={DateField} setFormData={setFormData} />
+
+        <SubmitButton
+          label={submitButtonText}
+          formMutation={formMutation}
+          getFormFullData={getFormFullData}
+          fieldsAmount={fieldsAmount}
+        />
       </PaperStyle>
     </ItemWrapper>
   );

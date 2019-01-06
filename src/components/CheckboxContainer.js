@@ -21,15 +21,20 @@ const TextHeaderWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-const CheckboxContainer = props => (
+const CheckboxContainer = ({
+  updateArrayField,
+  checklistField: { options, label },
+}) => (
   <DivWrapper>
-    <TextHeaderWrapper>{props.data ? props.data.label : ''}</TextHeaderWrapper>
+    <TextHeaderWrapper>{label}</TextHeaderWrapper>
     <RadioButtonGrouprStyle>
-      {props.data
-        ? props.data.options.map((data, i) => (
-            <CheckBoxItem label={data} key={i} />
-          ))
-        : ''}
+      {options.map((data, i) => (
+        <CheckBoxItem
+          label={data}
+          key={i}
+          updateArrayField={updateArrayField}
+        />
+      ))}
     </RadioButtonGrouprStyle>
   </DivWrapper>
 );

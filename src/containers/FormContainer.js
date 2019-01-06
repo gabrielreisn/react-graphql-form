@@ -3,16 +3,20 @@
 import * as React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import CircularProgress from 'material-ui/CircularProgress';
+import FormStoreContainer from './FormStoreContainer';
 
 import { PIPEFY_MUTATION } from '../graphql/pipefyMutation';
 import { PIPEFY_QUERY } from '../graphql/pipefyQuery';
-import FormWrapper from '../components/FormWrapper';
 
 const normalizeFields = fields => {
   return fields.reduce((accumulator, currentValue) => {
     accumulator[currentValue.__typename] = currentValue;
     return accumulator;
   }, {});
+};
+
+const objectSize = object => {
+  return Object.keys(object).length;
 };
 
 const FormContainer = () => (
@@ -25,11 +29,11 @@ const FormContainer = () => (
 
           const { publicForm: { publicFormSettings, formFields } } = data;
           return (
-            <FormWrapper
-              {...data}
+            <FormStoreContainer
               formMutation={pipefyMutation}
               publicFormSettings={publicFormSettings}
               formFields={normalizeFields(formFields)}
+              fieldsAmount={objectSize(formFields)}
             />
           );
         }}

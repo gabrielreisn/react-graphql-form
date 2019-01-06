@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-
-import * as FormAction from '../store/FormAction';
 
 import styled from 'styled-components';
 
@@ -24,46 +21,29 @@ const TextHeaderWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-const JsLibraryRadioButton = props => {
+const JsLibraryRadioButton = ({
+  setFormData,
+  jsLibrary: { label, options },
+}) => {
   const handleChange = (event, value) => {
-    props.setJavascriptLibraryOfChoice(value);
+    setFormData('jsLibrary', value);
   };
 
   return (
     <div style={divWrapper}>
-      <TextHeaderWrapper>
-        {props.javascript_library_of_choice
-          ? props.javascript_library_of_choice.label
-          : ''}
-      </TextHeaderWrapper>
+      <TextHeaderWrapper>{label}</TextHeaderWrapper>
 
       <RadioButtonGroup
         name="js library options"
         style={radioButtonGrouprStyle}
         onChange={handleChange}
       >
-        {props.javascript_library_of_choice
-          ? props.javascript_library_of_choice.options.map((data, i) => (
-              <RadioButton value={data} label={data} key={i} />
-            ))
-          : ''}
+        {options.map((optionLabel, i) => (
+          <RadioButton value={optionLabel} label={optionLabel} key={i} />
+        ))}
       </RadioButtonGroup>
     </div>
   );
 };
 
-const mapStateToProps = function(store, ownProps) {
-  return {};
-};
-
-const mapDispatchToProps = function(dispatch, ownProps) {
-  return {
-    setJavascriptLibraryOfChoice: param => {
-      return dispatch(FormAction.setJavascriptLibraryOfChoice(param));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  JsLibraryRadioButton
-);
+export default JsLibraryRadioButton;
